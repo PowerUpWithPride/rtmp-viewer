@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Power Up With Pride Commentator Stream Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.4.2/flv.min.js"></script>
+</head>
+<body style="margin: 0;">
+<!--We're streaming at 720p but you can change this if you like.-->
+<video id="videoElement" width="1280" height="720" controls autoplay muted></video>
+<script>
+    let videoElement = document.getElementById('videoElement');
+
+    if (flvjs.isSupported()) {
+        let flvPlayer = flvjs.createPlayer({
+            type: "flv",
+            url: "http://rtmp.powerupwithpride.org/flv?app=restream&stream=live",
+            isLive: true,
+        }, {
+            // These seem to be the best options for minimum latency on live streams.
+            enableStashBuffer: false,
+            lazyLoad: false,
+            deferLoadAfterSourceOpen: false,
+            fixAudioTimestampGap: false,
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+        flvPlayer.play();
+    } else {
+        videoElement.remove();
+        document.write("<p>FLV.js not supported!</p>");
+    }
+</script>
+</body>
+</html>

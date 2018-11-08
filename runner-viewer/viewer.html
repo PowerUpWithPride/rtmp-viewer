@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Power Up With Pride Single Stream Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.4.2/flv.min.js"></script>
+</head>
+<body style="margin: 0;">
+<video id="videoElement" width="1280" height="720" controls autoplay muted></video>
+<script>
+    let videoElement = document.getElementById("videoElement");
+
+    if (flvjs.isSupported()) {
+        // Get app name and stream key from query string.
+        let parsedUrl = new URL(window.location.href);
+        let app = parsedUrl.searchParams.get("app");
+        let stream = parsedUrl.searchParams.get("stream");
+
+        // Check if this is for the embeded version on the single viewing page.  If so, size it down to 360p for space.
+        if (parsedUrl.searchParams.has("embed")) {
+            videoElement.width = 640;
+            videoElement.height = 360;
+        }
+
+        // Build video element using the app and stream values.
+        let flvPlayer = flvjs.createPlayer({
+            type: "flv",
+            url: `http://rtmp.powerupwithpride.org/flv?app=${app}&stream=${stream}`,
+            isLive: true,
+        }, {
+            enableStashBuffer: false,
+            lazyLoad: false,
+            deferLoadAfterSourceOpen: false,
+            fixAudioTimestampGap: false,
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+        flvPlayer.play();
+    } else {
+        videoElement.remove();
+        document.write("<p>FLV.js not supported!</p>");
+    }
+</script>
+</body>
+</html>
