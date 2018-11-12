@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Power Up With Pride Runner Stream Viewer - 4 Players</title>
+    <title>Power Up With Pride Runner Stream Viewer - 1 Player</title>
     <link rel="icon" type="image/x-icon" href="https://tracker.powerupwithpride.org/static/favicon.ico"/>
     <link rel="stylesheet" href="css/main.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -11,15 +11,12 @@
         // Initialize the four windows.
         $(() => {
             $(".gameStreamCell").each((index, element) => {
-                new GameStream(element, 640, 360);
+                new GameStream(element, 1280, 720);
             });
         });
     </script>
 </head>
 <body>
-<div class="gameStreamCell"></div>
-<div class="gameStreamCell"></div>
-<div class="gameStreamCell"></div>
 <div class="gameStreamCell"></div>
 </body>
 </html>

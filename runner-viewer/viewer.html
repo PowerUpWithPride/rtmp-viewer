@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="https://tracker.powerupwithpride.org/static/favicon.ico"/>
 </head>
 <body style="margin: 0;">
+<!--Default to 720p and let the caller customize if necessary.-->
 <video id="videoElement" width="1280" height="720" controls autoplay muted></video>
 <script>
     let videoElement = document.getElementById("videoElement");
@@ -16,11 +17,17 @@
         let parsedUrl = new URL(window.location.href);
         let app = parsedUrl.searchParams.get("app");
         let stream = parsedUrl.searchParams.get("stream");
+        let width = parsedUrl.searchParams.get("width");
+        let height = parsedUrl.searchParams.get("height");
 
-        // Check if this is for the embeded version on the single viewing page.  If so, size it down to 360p for space.
-        if (parsedUrl.searchParams.has("embed")) {
-            videoElement.width = 640;
-            videoElement.height = 360;
+        // Set page title so the name is unique.  This helps with OBS window capturing so it doesn't get confused by
+        // capture windows for other stream keys.
+        document.title = `Power Up With Pride Single Stream Viewer: ${app}/${stream}`;
+
+        // Check if we're changing the width/height.
+        if (width && height) {
+            videoElement.width = width;
+            videoElement.height = height;
         }
 
         // Build video element using the app and stream values.
