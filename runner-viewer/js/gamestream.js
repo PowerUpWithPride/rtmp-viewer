@@ -118,7 +118,7 @@ class GameStream {
     }
 
     static getTwitchUrl(streamName) {
-        return `http://www.twitch.tv/${streamName}/embed`;
+        return `https://player.twitch.tv/?channel=${streamName}`;
     }
 
     getRTMPUrl(streamName) {
