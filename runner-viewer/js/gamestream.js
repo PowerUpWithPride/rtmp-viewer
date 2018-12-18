@@ -35,6 +35,8 @@ class GameStream {
         this.twitchButton = document.createElement("button");
         $(this.twitchButton).text("Twitch");
         this.twitchButton.style.width = "75";
+        let buttonSpan = document.createElement("span");
+        buttonSpan.setAttribute("style", "display: inline-block;");
         this.bonDefault1Button = document.createElement("button");
         $(this.bonDefault1Button).text(`${PREFIX}-1`);
         this.bonDefault2Button = document.createElement("button");
@@ -43,6 +45,14 @@ class GameStream {
         $(this.bonDefault3Button).text(`${PREFIX}-3`);
         this.bonDefault4Button = document.createElement("button");
         $(this.bonDefault4Button).text(`${PREFIX}-4`);
+        this.bonDefault5Button = document.createElement("button");
+        $(this.bonDefault5Button).text(`${PREFIX}-5`);
+        this.bonDefault6Button = document.createElement("button");
+        $(this.bonDefault6Button).text(`${PREFIX}-6`);
+        this.bonDefault7Button = document.createElement("button");
+        $(this.bonDefault7Button).text(`${PREFIX}-7`);
+        this.bonDefault8Button = document.createElement("button");
+        $(this.bonDefault8Button).text(`${PREFIX}-8`);
         this.clearButton = document.createElement("button");
         $(this.clearButton).text("Clear");
         let td1 = document.createElement("td");
@@ -52,10 +62,16 @@ class GameStream {
         td2.appendChild(this.streamNameField);
         td2.appendChild(this.rtmpButton);
         td2.appendChild(this.twitchButton);
-        td2.appendChild(this.bonDefault1Button);
-        td2.appendChild(this.bonDefault2Button);
-        td2.appendChild(this.bonDefault3Button);
-        td2.appendChild(this.bonDefault4Button);
+        buttonSpan.appendChild(this.bonDefault1Button);
+        buttonSpan.appendChild(this.bonDefault2Button);
+        buttonSpan.appendChild(this.bonDefault3Button);
+        buttonSpan.appendChild(this.bonDefault4Button);
+        buttonSpan.appendChild(document.createElement("br"));
+        buttonSpan.appendChild(this.bonDefault5Button);
+        buttonSpan.appendChild(this.bonDefault6Button);
+        buttonSpan.appendChild(this.bonDefault7Button);
+        buttonSpan.appendChild(this.bonDefault8Button);
+        td2.append(buttonSpan);
         td2.appendChild(this.clearButton);
         row1.appendChild(td1);
         row2.appendChild(td2);
@@ -109,6 +125,26 @@ class GameStream {
         this.bonDefault4Button.onclick = () => {
             $(this.streamNameField).val(`${PREFIX}-4`);
             this.setStreamSource(this.getRTMPUrl(`${PREFIX}-4`));
+        };
+
+        this.bonDefault5Button.onclick = () => {
+            $(this.streamNameField).val(`${PREFIX}-5`);
+            this.setStreamSource(this.getRTMPUrl(`${PREFIX}-5`));
+        };
+
+        this.bonDefault6Button.onclick = () => {
+            $(this.streamNameField).val(`${PREFIX}-6`);
+            this.setStreamSource(this.getRTMPUrl(`${PREFIX}-6`));
+        };
+
+        this.bonDefault7Button.onclick = () => {
+            $(this.streamNameField).val(`${PREFIX}-7`);
+            this.setStreamSource(this.getRTMPUrl(`${PREFIX}-7`));
+        };
+
+        this.bonDefault8Button.onclick = () => {
+            $(this.streamNameField).val(`${PREFIX}-8`);
+            this.setStreamSource(this.getRTMPUrl(`${PREFIX}-8`));
         };
 
         this.clearButton.onclick = () => {
