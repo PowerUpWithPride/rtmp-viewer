@@ -29,6 +29,7 @@ class GameStream {
         this.streamEmbed.setAttribute("frameborder", "0");
         this.streamEmbed.setAttribute("scrolling", "no");
         this.streamNameField = document.createElement("input");
+        this.streamNameField.setAttribute("style", "vertical-align: top;");
         this.rtmpButton = document.createElement("button");
         $(this.rtmpButton).text("RTMP");
         this.rtmpButton.style.width = "75";
