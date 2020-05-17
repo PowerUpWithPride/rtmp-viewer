@@ -8,7 +8,7 @@
 </head>
 <body style="margin: 0;">
 <!--Default to 720p and let the caller customize if necessary.-->
-<video id="videoElement" width="1280" height="720" controls autoplay></video>
+<video id="videoElement" width="1280" height="720" controls autoplay muted></video>
 <script>
     let videoElement = document.getElementById("videoElement");
 
@@ -19,6 +19,7 @@
         let stream = parsedUrl.searchParams.get("stream");
         let width = parsedUrl.searchParams.get("width");
         let height = parsedUrl.searchParams.get("height");
+        let embedded = parsedUrl.searchParams.get("embedded");
 
         // Set page title so the name is unique.  This helps with OBS window capturing so it doesn't get confused by
         // capture windows for other stream keys.
@@ -30,6 +31,12 @@
         }
         if (height) {
             videoElement.height = height;
+        }
+
+        // For embedded mode, disabled controls and unmute by default (for OBS broswer source).
+        if (embedded) {
+            videoElement.muted = false;
+            videoElement.controls = false;
         }
 
         // Build video element using the app and stream values.
