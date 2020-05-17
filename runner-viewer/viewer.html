@@ -8,7 +8,7 @@
 </head>
 <body style="margin: 0;">
 <!--Default to 720p and let the caller customize if necessary.-->
-<video id="videoElement" width="1280" height="720" controls autoplay muted></video>
+<video id="videoElement" width="1280" height="720" controls autoplay></video>
 <script>
     let videoElement = document.getElementById("videoElement");
 
@@ -25,8 +25,10 @@
         document.title = `Power Up With Pride Single Stream Viewer: ${app}/${stream}`;
 
         // Check if we're changing the width/height.
-        if (width && height) {
+        if (width) {
             videoElement.width = width;
+        }
+        if (height) {
             videoElement.height = height;
         }
 
